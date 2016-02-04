@@ -55,8 +55,8 @@ class Words {
             return false
         }
         
-        var arrA = Array(self.wordA.characters)
-        var arrB = Array(self.wordB.characters)
+        let arrA = Array(self.wordA.characters)
+        let arrB = Array(self.wordB.characters)
         
         for i in 0...lenA-1 {
             let letter = arrA[i]
@@ -90,7 +90,7 @@ class Words {
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: The problem is that countLetters is declared but there is never a value instantiated for it, thus making it nil. However, countLetters is not declared as an optional therefore it tricks the compiler through static typing that there will be a value for it. When it is used in the for loop, the problem will be if its nil the program will crash since it doesn't do any optional check or safe unwrapping because it doesn't know countLetters was never initialized. Therefore a value must be assigned to countLetters. Another error is isAnagram() does not have an optional return type but was returning nil and that it never had a correct case (return true). Also, isAnagram() cannot be a class method because it is being called with an instance of the class using instance variables, therefore this method needs to be changed into an instance method. Finally some small syntax things include replacing letters with _ since letters is not used, and setting the length of the words to constants since the words were not modified inside the isAmalgram method.
+//: The problem is that countLetters is declared as a certain type but it is not initialized which means Swift will not let it be used until it is initialized, so Line Y breaks. To solve this problem, the only thing I can do is actually initialize countLetters to a empty dictionary. This is because if I tried to intialize it to nil and make countLetters optional, it wouldn't work as the let statement tries to assume the optional is a dictionary without unwrapping it, and even if it did it would need to safely check through optional binding if countLetters[letter] had a value. Another error is isAnagram() does not have an optional return type but was returning nil and that it never had a correct case (return true). Also, isAnagram() cannot be a class method because it is being called with an instance of the class using instance variables, therefore this method needs to be changed into an instance method. Finally some small syntax things include replacing letters with _ since letters is not used, and setting the length of the words to constants since the words were not modified inside the isAmalgram method, as well as the arrays as they are not being modified either.
     
     
 }
